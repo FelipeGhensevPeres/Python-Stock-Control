@@ -117,7 +117,7 @@ def iniciar_sistema():
     canvas.place(x=0, y=0)
 
     background_img = PhotoImage(
-        file="janela/background.png"
+        file="assets/imagens/background.png"
     )
 
     canvas.create_image(
@@ -127,7 +127,7 @@ def iniciar_sistema():
     )
     
     
-    img0 = PhotoImage(file="janela/img0.png")
+    img0 = PhotoImage(file="assets/imagens/img0.png")
     
     b0 = Button(image=img0,
                 borderwidth=0,
@@ -143,7 +143,7 @@ def iniciar_sistema():
     )
     
     
-    img1 = PhotoImage(file="janela/img1.png")
+    img1 = PhotoImage(file="assets/imagens/img1.png")
     
     b1 = Button(image=img1,
                 borderwidth=0,
@@ -159,7 +159,7 @@ def iniciar_sistema():
     )
     
     
-    img2 = PhotoImage(file="janela/img2.png")
+    img2 = PhotoImage(file="assets/imagens/img2.png")
     
     b2 = Button(image=img2,
                 borderwidth=0,
@@ -175,7 +175,7 @@ def iniciar_sistema():
     )
     
 
-    img3 = PhotoImage(file="janela/img3.png")
+    img3 = PhotoImage(file="assets/imagens/img3.png")
 
     b3 = Button(
         image=img3,
