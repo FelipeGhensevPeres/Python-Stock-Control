@@ -39,7 +39,7 @@ def iniciar_sistema():
         
         
         deletar_insumo(nome=nome_insumo.get(),
-                       lote=lote_insumo.get())
+                       lote=int(lote_insumo.get()))
         
         caixa_texto.delete('1.0',END)
         
@@ -60,8 +60,8 @@ def iniciar_sistema():
             return
         
         consumir_insumo(nome=nome_insumo.get(),
-                        lote=lote_insumo.get(),
-                        quantidade=qtde_insumo.get())
+                        lote=int(lote_insumo.get()),
+                        quantidade=int(qtde_insumo.get()))
         
         caixa_texto.delete('1.0',END)
         
@@ -76,6 +76,8 @@ def iniciar_sistema():
             caixa_texto.delete('1.0',END)
             
             caixa_texto.insert('1.0','Nome do Insumo Inválido')
+            
+            return
             
         
         valores = visualizar_insumo(nome=nome_insumo.get())
@@ -123,6 +125,55 @@ def iniciar_sistema():
         323.0,
         image=background_img
     )
+    
+    
+    img0 = PhotoImage(file="janela/img0.png")
+    
+    b0 = Button(image=img0,
+                borderwidth=0,
+                highlightthickness=0,
+                command=visualizar_insumo_ui,
+                relief='flat')
+    
+    b0.place(
+        x=479,
+        y=195,
+        width=178,
+        height=38
+    )
+    
+    
+    img1 = PhotoImage(file="janela/img1.png")
+    
+    b1 = Button(image=img1,
+                borderwidth=0,
+                highlightthickness=0,
+                command=deletar_insumo_ui,
+                relief='flat')
+    
+    b1.place(
+        x=247,
+        y=197,
+        width=178,
+        height=36
+    )
+    
+    
+    img2 = PhotoImage(file="janela/img2.png")
+    
+    b2 = Button(image=img2,
+                borderwidth=0,
+                highlightthickness=0,
+                command=consumir_insumo_ui,
+                relief='flat')
+    
+    b2.place(
+        x=479,
+        y=123,
+        width=178,
+        height=35
+    )
+    
 
     img3 = PhotoImage(file="janela/img3.png")
 
