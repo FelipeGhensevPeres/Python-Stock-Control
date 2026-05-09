@@ -1,10 +1,8 @@
 from tkinter import *
+from app.database.connection import conectar
 import pyodbc
 
-######## funcionalidades do sistema #############
-dados_conexao = ('Driver=SQLite3 ODBC Driver;Server=localhost;Database=Estoque.db')
-
-conexao = pyodbc.connect(dados_conexao)
+conexao = conectar()
 cursor = conexao.cursor()
 
 def adicionar_insumo():
