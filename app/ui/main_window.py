@@ -1,17 +1,20 @@
 from tkinter import Tk,Canvas,Button,PhotoImage,Text,Entry,END         
 from app.models.produto import Produto
-from app.services.estoque_service import adicionar_insumo
+from app.services.estoque_service import adicionar_insumo,deletar_insumo,consumir_insumo,visualizar_insumo
 
 
+#INICIAR INTERFACE 
 def iniciar_sistema():
 
-    def adicionar_produto_ui():
+
+    # ADICIONAR INSUMO NA INTERFACE
+    def adicionar_insumo_ui():
 
         produto = Produto(
             nome=nome_insumo.get(),
-            quantidade=qtde_insumo.get(),
+            quantidade=int(qtde_insumo.get()),
             validade=data_insumo.get(),
-            lote=lote_insumo.get()
+            lote=int(lote_insumo.get())
         )
 
         adicionar_insumo(produto=produto)
@@ -22,6 +25,77 @@ def iniciar_sistema():
             "1.0",
             f"{produto.nome} adicionado com sucesso!"
         )
+        
+        
+    # DELETAR INSUMO NA INTERFACE
+    def deletar_insumo_ui():
+        
+        if len(nome_insumo.get()) < 2 or len(lote_insumo.get()) < 1:
+            caixa_texto.delete('1.0',END)
+            
+            caixa_texto.insert('1.0', 'Nome do Insumo Inválido')
+            
+            return
+        
+        
+        deletar_insumo(nome=nome_insumo.get(),
+                       lote=lote_insumo.get())
+        
+        caixa_texto.delete('1.0',END)
+        
+        
+        caixa_texto.insert('1.0',f'{nome_insumo.get()} deletado com sucesso!')
+        
+    
+    # CONSUMIR INSUMO DA INTERFACE
+    def consumir_insumo_ui():
+        if (len(nome_insumo.get()) < 2
+        or len(qtde_insumo.get()) < 1
+        or len (lote_insumo.get()) < 1):
+            
+            caixa_texto.delete('1.0',END)
+            
+            caixa_texto.insert('1.0','Nome,Lote e Quantidade do Insumo Inválido')
+            
+            return
+        
+        consumir_insumo(nome=nome_insumo.get(),
+                        lote=lote_insumo.get(),
+                        quantidade=qtde_insumo.get())
+        
+        caixa_texto.delete('1.0',END)
+        
+        caixa_texto.insert('1.0',f'Insumo {nome_insumo.get()} consumido com sucesso em {qtde_insumo.get()} quantidades')
+        
+    
+    # VISUALIZACAO DO INSUMO NA INTERFACE
+    def visualizar_insumo_ui():
+        
+        if len(nome_insumo.get()) < 2:
+            
+            caixa_texto.delete('1.0',END)
+            
+            caixa_texto.insert('1.0','Nome do Insumo Inválido')
+            
+        
+        valores = visualizar_insumo(nome=nome_insumo.get())
+        
+        texto = ''
+        
+        for (id_produto,produto,quantidade,validade,lote) in valores:
+            
+            texto += f'''
+            --------------------------
+            Produto: {produto}
+            Quantidade: {quantidade}
+            Validade: {validade}
+            Lote: {lote}
+            '''
+            
+            caixa_texto.delete('1.0',END)
+            
+            caixa_texto.insert('1.0',texto)
+    
 
     window = Tk()
 
@@ -56,7 +130,7 @@ def iniciar_sistema():
         image=img3,
         borderwidth=0,
         highlightthickness=0,
-        command=adicionar_produto_ui,
+        command=adicionar_insumo_ui,
         relief="flat"
     )
 
