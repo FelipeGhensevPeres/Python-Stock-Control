@@ -89,7 +89,3 @@ Desenvolvi esse projeto para praticar
 - Git e GitHub
 
 ---
-
-# 👨‍💻 Autor
-
-Desenvolvido por Felipe Ghensev Peres.
